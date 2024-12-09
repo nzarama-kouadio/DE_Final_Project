@@ -1,0 +1,12 @@
+{
+  "name": "Flask App DevContainer",
+  "dockerFile": "../Dockerfile",
+  "settings": {
+    "python.pythonPath": "/usr/bin/python3"
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-azuretools.vscode-docker"
+  ],
+  "forwardPorts": [5000]
+}

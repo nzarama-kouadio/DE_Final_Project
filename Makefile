@@ -16,13 +16,13 @@ install:
 	venv/bin/pip3 install -r requirements.txt
 
 format:	
-	venv/bin/black src/*.py
+	venv/bin/black **/*.py
 
 test:
 	venv/bin/python3 -m pytest -vv --cov=src.dotp
 
 lint:
-	venv/bin/ruff check src/*.py
+	venv/bin/ruff check **/*.py
 
 
 
@@ -50,7 +50,7 @@ test_local_predict_api:
 
 # DOCKER
 docker_runb:
-	make docker_clean
+	make docker_down
 	make docker_build
 	make docker_run
 
@@ -60,8 +60,14 @@ docker_build:
 docker_run:
 	docker run -p  $(PORT):$(PORT) $(IMAGE_NAME)
 
-docker_clean:
-	docker rmi $(IMAGE_NAME)
+docker_down:
+	docker image prune -a
+	docker container prune
+	docker volume prune
+	docker network prune
+
+#docker_clean:
+#	docker rmi $(IMAGE_NAME)
 
 docker_push:
 	docker login -u $(DOCKER_ID_USER)

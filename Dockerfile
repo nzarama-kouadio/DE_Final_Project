@@ -25,4 +25,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the Flask app
-CMD ["python3", "api/app.py"]
+CMD ["flask", "run", "--host=0.0.0.0"]

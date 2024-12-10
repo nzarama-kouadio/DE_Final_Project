@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request
-from ingestion_service import ingest_data
-from preprocessing import preprocess_data
+from api.ingestion_service import ingest_data
+from api.preprocessing import preprocess_data
 from feature_engineering.real_time_features import real_time_features
-from predictive_service import make_prediction
+from api.predictive_service import make_prediction
 
 app = Flask(__name__)
 

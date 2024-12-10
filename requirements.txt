@@ -13,3 +13,4 @@ numpy==1.26.4
 locust
 flask
 scikit-learn==1.5.1
+shap==0.41.0

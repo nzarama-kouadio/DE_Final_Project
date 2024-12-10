@@ -29,17 +29,10 @@ lint:
 # TEST API LOCAL
 test_local_all:
 	make test_local_health_check
-	make test_local_log_api
 	make test_local_predict_api
 
 test_local_health_check:
 	curl http://$(LOCAL_DOMAIN):$(PORT)/health
-
-test_local_log_api:
-	curl -X POST http://$(LOCAL_DOMAIN):$(PORT)/log \
-   -H "Content-Type: application/json" \
-   -d '{"transaction_id": "1", "amount": 100, "timestamp": "2024-12-09T12:00:00", "merchant": "Amazon"}'
-
 
 test_local_predict_api:
 	curl -X POST http://$(LOCAL_DOMAIN):$(PORT)/predict \

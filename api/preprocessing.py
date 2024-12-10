@@ -1,5 +1,6 @@
 import pandas as pd
 
+# TODO: check with Micha's code (how to clean data)
 def validate_input(data):
     """Validate raw input data."""
     # Example validation: Check required keys

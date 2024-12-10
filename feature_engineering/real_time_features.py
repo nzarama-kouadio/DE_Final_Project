@@ -1,3 +1,4 @@
+# TODO: confirm with Micha that we don't perform transformation, so we can skip this
 def calculate_time_features(data):
     """Extract time-based features from timestamps."""
     data["hour"] = data["timestamp"].dt.hour

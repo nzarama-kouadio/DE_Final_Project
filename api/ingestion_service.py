@@ -1,5 +1,8 @@
 from flask import jsonify
-
+# TODO: design how our app will take input and what columns do we need
+# suggestion make user input all columns in the final merged df
+# TODO: test with mock input data
+# we can use the compelte_dataset first to make sure that our app handle properly
 def ingest_data(raw_data):
     """Ingest raw transaction data."""
     try:

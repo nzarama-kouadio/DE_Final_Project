@@ -19,7 +19,6 @@ lint:
 docker_build:
 	docker build -t $(IMAGE_NAME) .
 
-# Run the Docker container
 docker_run:
 	docker run -p  $(PORT):$(PORT) $(IMAGE_NAME)
 
@@ -42,7 +41,7 @@ login:
 	docker login -u ${DOCKER_ID_USER}
 
 test_health_check:
-	curl
+	curl http://127.0.0.1:$(PORT)/health
 
 test_log_api:
 	curl -X POST http://127.0.0.1:$(PORT)/log \
@@ -69,3 +68,14 @@ test_predict_api:
 #     "prediction": "not fraud"
 #   }
 all: install lint test format
+
+
+# Run the Docker container
+docker_runb:
+	make docker_build
+	make docker_run
+
+test_all:
+	make test_health_check
+	make test_log_api
+	make test_predict_api

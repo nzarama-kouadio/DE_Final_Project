@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libffi-dev \
     libssl-dev
 
+ENV PYTHONPATH=/app
+
 # Install Python dependencies
 COPY requirements.txt ./
 RUN pip install --upgrade pip
@@ -23,4 +25,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the Flask app
-CMD ["python3", "app.py"]
+CMD ["python3", "api/app.py"]

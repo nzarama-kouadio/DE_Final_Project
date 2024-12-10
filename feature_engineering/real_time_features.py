@@ -5,10 +5,12 @@ def calculate_time_features(data):
     data["day_of_week"] = data["timestamp"].dt.dayofweek
     return data
 
+
 def encode_categorical_features(data):
     """Encode categorical variables."""
     data["merchant_encoded"] = data["merchant"].astype("category").cat.codes
     return data
+
 
 def real_time_features(data):
     """End-to-end feature engineering pipeline."""

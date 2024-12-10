@@ -11,11 +11,13 @@ def validate_input(data):
 
     return True
 
+
 def clean_data(data):
     """Clean and standardize input data."""
     # Standardize timestamp format
     data["timestamp"] = pd.to_datetime(data["timestamp"])
     return data
+
 
 def preprocess_data(raw_data):
     """High-level preprocessing function."""

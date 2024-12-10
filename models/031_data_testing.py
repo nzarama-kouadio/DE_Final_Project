@@ -3,7 +3,6 @@ Testing the data to see if everything is in place for modelling
 """
 
 import pandas as pd
-import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 

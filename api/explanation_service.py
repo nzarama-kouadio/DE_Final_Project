@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 # Ensure SHAP library can find a display backend
 os.environ["DISPLAY"] = ":0"
 
+
 def generate_shap_explanations(model, features, save_plots=True):
     """
     Generate SHAP explanations for given features using the provided model.
@@ -12,7 +13,8 @@ def generate_shap_explanations(model, features, save_plots=True):
     Args:
         model: The trained machine learning model (compatible with SHAP).
                If None, the default model will be loaded.
-        features: The preprocessed features for which explanations are generated (Pandas DataFrame).
+        features: The preprocessed features for which
+                explanations are generated (Pandas DataFrame).
         save_plots: Whether to save SHAP summary plots as static files.
 
     Returns:

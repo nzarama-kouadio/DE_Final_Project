@@ -14,13 +14,15 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-    - name: Configure AWS Credentials
-    - name: ECR authentication
+    - name: ECR configure
       uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
+    - name: ECR auth
+      run:
+        make ecr_auth
     - name: Build, tag, and push the image to Amazon ECR
       id: build-image
       run:

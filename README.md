@@ -1,5 +1,6 @@
 # DE_Final_Project
-
+[![.github/workflows/apprunner.yml](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/apprunner.yml/badge.svg)](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/apprunner.yml)
+[![CICD](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/CICD.yml/badge.svg)](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/CICD.yml)
 ## Dataset Overview
 
 Source: https://www.kaggle.com/datasets/goyaladi/fraud-detection-dataset/data

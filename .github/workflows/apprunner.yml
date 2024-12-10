@@ -21,10 +21,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
     - name: ECR auth
-      run:
-        make ecr_auth
+      run: make ecr_auth
     - name: Build, tag, and push the image to Amazon ECR
-      id: build-image
-      run:
-        make docker_build
-        make ecr_push
+      run: make ecr_push

@@ -1,20 +1,26 @@
-# Use Python Distroless Image
-FROM gcr.io/distroless/python3
+FROM python:3.9-slim-buster
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy application dependencies
-COPY requirements.txt ./
+# Install build tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gcc \
+    libc-dev \
+    libffi-dev \
+    libssl-dev
 
-# Install dependencies
+# Install Python dependencies
+COPY requirements.txt ./
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . ./
+COPY . .
 
-# Expose port
-EXPOSE 5000
+# Expose the port Flask will use
+EXPOSE 8000
 
-# Run the application
-CMD ["app.py"]
+# Run the Flask app
+CMD ["python3", "app.py"]

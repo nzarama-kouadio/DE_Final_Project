@@ -1,5 +1,6 @@
 IMAGE_NAME := fraud_detection
 DOCKER_ID_USER := skyea
+PORT := 8000
 
 install:
 	python3 -m venv venv
@@ -15,12 +16,12 @@ test:
 lint:
 	venv/bin/ruff check src/*.py
 
-build:
+docker_build:
 	docker build -t $(IMAGE_NAME) .
 
 # Run the Docker container
-run:
-	docker run -p  8000:80 $(IMAGE_NAME)
+docker_run:
+	docker run -p  $(PORT):$(PORT) $(IMAGE_NAME)
 
 # Remove the Docker image
 clean:
@@ -40,5 +41,31 @@ push:
 login:
 	docker login -u ${DOCKER_ID_USER}
 
-all: install lint test format
+test_health_check:
+	curl
 
+test_log_api:
+	curl -X POST http://127.0.0.1:$(PORT)/log \
+   -H "Content-Type: application/json" \
+   -d '{"transaction_id": "1", "amount": 100, "timestamp": "2024-12-09T12:00:00", "merchant": "Amazon"}'
+#expect:
+#   {
+#     "status": "success",
+#     "message": "Data ingested successfully.",
+#     "data": {
+#       "transaction_id": "1",
+#       "amount": 100,
+#       "timestamp": "2024-12-09T12:00:00",
+#       "merchant": "Amazon"
+#     }
+#   }
+
+test_predict_api:
+	curl -X POST http://127.0.0.1:$(PORT)/predict \
+   -H "Content-Type: application/json" \
+   -d '{"transaction_id": "1", "amount": 100, "timestamp": "2024-12-09T12:00:00", "merchant": "Amazon"}'
+#Expected response (example):
+#   {
+#     "prediction": "not fraud"
+#   }
+all: install lint test format

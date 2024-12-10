@@ -6,7 +6,6 @@ AWS_REGION := us-east-2
 LOCAL_DOMAIN := 127.0.0.1
 AWS_DOMAIN := https://4fupzbqtbq.us-east-2.awsapprunner.com
 
-
 # LOCAL
 local: install lint test format
 
@@ -75,6 +74,7 @@ ecr_auth:
 	aws --region $(AWS_REGION) ecr get-login-password | docker login --username AWS --password-stdin $(AWS_USER_ID).dkr.ecr.$(AWS_REGION).amazonaws.com
 
 ecr_push:
+	make docker_build
 	docker tag $(IMAGE_NAME):latest $(AWS_USER_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(IMAGE_NAME):latest
 	docker push $(AWS_USER_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(IMAGE_NAME):latest
 

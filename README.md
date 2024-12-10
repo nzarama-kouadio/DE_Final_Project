@@ -74,4 +74,13 @@ One merchant (MerchantID) can process transactions from multiple customers.
 - Address of the customer who made the transaction.
 - Can be used to study geographical spending patterns.
 
+`LastLogin`:
+- Date at which the account was logged into
+- it could have been by the customer or an unothorized individual
+
+`SuspiciousFlag`:
+- Binary column (0 or 1) indicating whether the transaction was flaggeda as suspicious
+- 0 means non-suspicious, 1 means suspicious.
+
+
 

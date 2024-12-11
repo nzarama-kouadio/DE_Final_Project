@@ -55,8 +55,8 @@ columns_to_be_dropped = [
 fraud1 = fraud.drop(columns_to_be_dropped, axis=1)
 
 fraud1["FraudIndicator"].value_counts()
-"""This dataset is very imbalanced as the number of cases 
-which are fraudulent are very few. 
+"""
+This dataset is very imbalanced as the number of cases which are fraudulent are very few. 
 Thus, the models would not be able to predict these cases very accurately.
 """
 
@@ -64,6 +64,10 @@ Thus, the models would not be able to predict these cases very accurately.
 
 # converting the TimeStamp to a datetime format
 fraud1["Timestamp"] = pd.to_datetime(fraud1["Timestamp"])
+fraud1["LastLogin"] = pd.to_datetime(fraud1["LastLogin"])
+
+fraud1["gap"] = (fraud1["Timestamp"] - fraud1["LastLogin"]).dt.days.abs()
+
 print(fraud1.dtypes)
 
 # Extract useful time-based features
@@ -73,7 +77,7 @@ fraud1["Month"] = fraud1["Timestamp"].dt.month
 fraud1["Weekday"] = fraud1["Timestamp"].dt.weekday
 fraud1["Year"] = fraud1["Timestamp"].dt.year
 
-X = fraud1.drop(["FraudIndicator", "Timestamp"], axis=1)
+X = fraud1.drop(["FraudIndicator", "LastLogin", "Timestamp"], axis=1)
 y = fraud1["FraudIndicator"]
 
 # initializing LabelEncoder
@@ -186,8 +190,9 @@ print(confusion_matrix(y_test, y_predFROST))
 # Define a range of hyperparameters to search
 param_grid = {
     "penalty": ["l1", "l2"],  # Regularization type
-    "C": np.logspace(-3, 3, 7),  # Inverse of regularization strength
-    # (smaller values for stronger regularization)
+    "C": np.logspace(
+        -3, 3, 7
+    ),  # Inverse of regularization strength (smaller values for stronger regularization)
     "solver": ["liblinear"],  # Solver for l1 regularization
 }
 
@@ -215,8 +220,9 @@ print(confusion_matrix(y_train_smote, y_pred))
 # Define a range of hyperparameters to search
 param_grid = {
     "penalty": ["l1", "l2"],  # Regularization type
-    "C": np.logspace(-3, 3, 7),  # Inverse of regularization strength
-    # (smaller values for stronger regularization)
+    "C": np.logspace(
+        -3, 3, 7
+    ),  # Inverse of regularization strength (smaller values for stronger regularization)
     "solver": ["liblinear"],  # Solver for l1 regularization
 }
 

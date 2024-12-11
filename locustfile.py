@@ -1,5 +1,6 @@
 from locust import HttpUser, TaskSet, task
 
+
 class UserBehavior(TaskSet):
     @task(1)
     def log_data(self):
@@ -8,8 +9,14 @@ class UserBehavior(TaskSet):
 
     @task(2)
     def predict(self):
-        payload = {"transaction": "test_data"}
+        payload = {
+            "transaction_id": "1",
+            "amount": 100,
+            "timestamp": "2024-12-09T12:00:00",
+            "merchant": "Amazon",
+        }
         self.client.post("/predict", json=payload)
+
 
 class LoadTest(HttpUser):
     tasks = [UserBehavior]

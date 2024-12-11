@@ -39,7 +39,39 @@ test_local_predict_api:
    -H "Content-Type: application/json" \
    -d '{"transaction_id": "1", "amount": 100, "timestamp": "2024-12-09T12:00:00", "merchant": "Amazon"}'
 
-
+test_local_predict_api_multiples:
+	curl -X POST http://127.0.0.1:8000/predict \
+	-H "Content-Type: application/json" \
+	-d '[
+	{
+		"TransactionID": "1",
+		"Timestamp": "2024-12-10T12:00:00",
+		"MerchantID": "101",
+		"Amount": 100.5,
+		"CustomerID": "202",
+		"TransactionAmount": 150.75,
+		"AnomalyScore": 0.5,
+		"Category": "Online",
+		"CustomerAge": 35,
+		"AccountBalance": 5000.25,
+		"SuspiciousFlag": 0,
+		"LastLogin": "2024-12-09T15:00:00"
+	},
+	{
+		"TransactionID": "2",
+		"Timestamp": "2024-12-10T13:00:00",
+		"MerchantID": "102",
+		"Amount": 200.75,
+		"CustomerID": "203",
+		"TransactionAmount": 250.50,
+		"AnomalyScore": 0.7,
+		"Category": "Travel",
+		"CustomerAge": 40,
+		"AccountBalance": 7000.00,
+		"SuspiciousFlag": 1,
+		"LastLogin": "2024-12-09T16:00:00"
+	}
+	]'
 
 # DOCKER
 docker_runb:

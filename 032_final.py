@@ -55,7 +55,8 @@ columns_to_be_dropped = [
 fraud1 = fraud.drop(columns_to_be_dropped, axis=1)
 
 fraud1["FraudIndicator"].value_counts()
-"""This dataset is very imbalanced as the number of cases which are fraudulent are very few. 
+"""
+This dataset is very imbalanced as the number of cases which are fraudulent are very few. 
 Thus, the models would not be able to predict these cases very accurately.
 """
 
@@ -63,6 +64,10 @@ Thus, the models would not be able to predict these cases very accurately.
 
 # converting the TimeStamp to a datetime format
 fraud1["Timestamp"] = pd.to_datetime(fraud1["Timestamp"])
+fraud1["LastLogin"] = pd.to_datetime(fraud1["LastLogin"])
+
+fraud1["gap"] = (fraud1["Timestamp"] - fraud1["LastLogin"]).dt.days.abs()
+
 print(fraud1.dtypes)
 
 # Extract useful time-based features
@@ -72,7 +77,7 @@ fraud1["Month"] = fraud1["Timestamp"].dt.month
 fraud1["Weekday"] = fraud1["Timestamp"].dt.weekday
 fraud1["Year"] = fraud1["Timestamp"].dt.year
 
-X = fraud1.drop(["FraudIndicator", "Timestamp"], axis=1)
+X = fraud1.drop(["FraudIndicator", "LastLogin", "Timestamp"], axis=1)
 y = fraud1["FraudIndicator"]
 
 # initializing LabelEncoder

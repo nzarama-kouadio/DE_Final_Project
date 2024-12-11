@@ -9,4 +9,9 @@ def make_prediction(model, features):
     Returns:
         list: Model predictions for the input features.
     """
-    return model.predict(features).tolist()
+    # Perform the prediction
+    predictions = model.predict(features.values).tolist()
+    
+    # Map numeric predictions to labels
+    label_mapping = {0.0: "Not Fraud", 1.0: "Fraud"}
+    return [label_mapping.get(pred, "Unknown") for pred in predictions]

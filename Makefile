@@ -123,11 +123,11 @@ ecr_push:
 #   -d '{"transaction_id": "1", "amount": 100, "timestamp": "2024-12-09T12:00:00", "merchant": "Amazon"}'
 #
 #
-#test_aws_predict_api:
-#	curl -X POST https://$(AWS_DOMAIN):$(PORT)/predict \
-#   -H "Content-Type: application/json" \
-#   -d '{"transaction_id": "1", "amount": 100, "timestamp": "2024-12-09T12:00:00", "merchant": "Amazon"}'
-#
+test_aws_predict_api:
+	curl -X POST https://$(AWS_DOMAIN):$(PORT)/predict \
+  -H "Content-Type: application/json" \
+  -d '{"transaction_id": "1", "amount": 100, "timestamp": "2024-12-09T12:00:00", "merchant": "Amazon"}'
+
 #test_aws_all:
 #	make test_aws_health_check
 #	make test_aws_log_api

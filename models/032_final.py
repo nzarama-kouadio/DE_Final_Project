@@ -56,8 +56,9 @@ fraud1 = fraud.drop(columns_to_be_dropped, axis=1)
 
 fraud1["FraudIndicator"].value_counts()
 """
-This dataset is very imbalanced as the number of cases which are fraudulent are very few. 
-Thus, the models would not be able to predict these cases very accurately.
+The dataset is highly imbalanced, with significantly fewer fraudulent cases 
+compared to non-fraudulent ones. This imbalance may lead to predictive 
+models struggling to accurately identify fraudulent cases.
 """
 
 # FEATURE ENGINEERING
@@ -192,7 +193,7 @@ param_grid = {
     "penalty": ["l1", "l2"],  # Regularization type
     "C": np.logspace(
         -3, 3, 7
-    ),  # Inverse of regularization strength (smaller values for stronger regularization)
+    ),  # Inverse of regularization strength
     "solver": ["liblinear"],  # Solver for l1 regularization
 }
 
@@ -222,7 +223,7 @@ param_grid = {
     "penalty": ["l1", "l2"],  # Regularization type
     "C": np.logspace(
         -3, 3, 7
-    ),  # Inverse of regularization strength (smaller values for stronger regularization)
+    ),  # Inverse of regularization strength
     "solver": ["liblinear"],  # Solver for l1 regularization
 }
 

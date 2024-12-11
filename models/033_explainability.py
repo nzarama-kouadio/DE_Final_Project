@@ -48,7 +48,7 @@ X["Category"] = label_encoder.fit_transform(X["Category"])
 X_shap = X[:100]
 
 # Load the trained model
-with open("ml_model.pkl", "rb") as f:
+with open("models/ml_model.pkl", "rb") as f:
     ml_model = pickle.load(f)
 
 # Explainability with SHAP

@@ -22,10 +22,13 @@ def generate_shap_explanations(model, features, save_plots=True):
         os.makedirs("static", exist_ok=True)
 
         # Create SHAP explainer
-        explainer = shap.Explainer(model, features)
+        explainer = shap.TreeExplainer(model)
 
         # Compute SHAP values
-        shap_values = explainer(features)
+        shap_values = explainer.shap_values(features)
+
+        # Extract SHAP values
+        shap_values_class1 = shap_values[:, :, 1]
 
         # Generate unique filenames for plots
         unique_id = str(uuid.uuid4())
@@ -36,16 +39,16 @@ def generate_shap_explanations(model, features, save_plots=True):
 
         if save_plots:
             # Generate the bar summary plot
-            shap.summary_plot(shap_values, features, plot_type="bar", show=False)
+            shap.summary_plot(shap_values_class1, features, plot_type="bar", show=False)
             plt.savefig(plot_paths["bar_plot"])
             plt.close()
 
             # Generate the standard summary plot
-            shap.summary_plot(shap_values, features, show=False)
+            shap.summary_plot(shap_values_class1, features, show=False)
             plt.savefig(plot_paths["summary_plot"])
             plt.close()
 
-        return shap_values, plot_paths
+        return shap_values_class1, plot_paths
 
     except Exception as e:
         raise ValueError(f"Error generating SHAP explanations: {e}")

@@ -1,10 +1,5 @@
-import os
 import shap
 import matplotlib.pyplot as plt
-
-# Ensure SHAP library can find a display backend
-os.environ["DISPLAY"] = ":0"
-
 
 def generate_shap_explanations(model, features, save_plots=True):
     """
@@ -27,18 +22,20 @@ def generate_shap_explanations(model, features, save_plots=True):
     # Compute SHAP values
     shap_values = explainer.shap_values(features)
 
-    plot_paths = {}
+    # Generate and save SHAP plots
+    plot_paths = {
+        "bar_plot": "static/shap_summary_bar.png",
+        "summary_plot": "static/shap_summary.png"
+    }
     if save_plots:
-        # Generate summary bar plot
-        shap.summary_plot(shap_values, features, show=False, plot_type="bar")
-        bar_plot_path = "static/shap_summary_bar.png"
-        plt.savefig(bar_plot_path)
-        plot_paths["bar_plot"] = f"/{bar_plot_path}"
+            # Generate the bar summary plot
+            shap.summary_plot(shap_values, features, plot_type="bar", show=False)
+            plt.savefig(plot_paths["bar_plot"])
+            plt.close()
 
-        # Generate detailed summary plot
-        shap.summary_plot(shap_values, features, show=False)
-        summary_plot_path = "static/shap_summary.png"
-        plt.savefig(summary_plot_path)
-        plot_paths["summary_plot"] = f"/{summary_plot_path}"
+            # Generate the standard summary plot
+            shap.summary_plot(shap_values, features, show=False)
+            plt.savefig(plot_paths["summary_plot"])
+            plt.close()
 
     return shap_values, plot_paths

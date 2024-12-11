@@ -3,6 +3,9 @@ FROM python:3.9-slim-buster
 # Set working directory
 WORKDIR /app
 
+# Ensure the static directory is created
+RUN mkdir -p /app/static
+
 # Install build tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -26,4 +29,3 @@ EXPOSE 8000
 
 # Run the Flask app
 CMD ["flask", "run", "--host=0.0.0.0", "--port=8000"]
-

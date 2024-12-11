@@ -1,6 +1,12 @@
-# Load model
-# TODO: check correctness of model integration
 def make_prediction(model, features):
-    """Run the model prediction."""
-    prediction = model.predict([features])
-    return prediction[0]
+    """
+    Predict using the loaded model.
+
+    Args:
+        model: Loaded machine learning model.
+        features (pd.DataFrame): Feature-engineered data.
+
+    Returns:
+        list: Model predictions for the input features.
+    """
+    return model.predict(features).tolist()

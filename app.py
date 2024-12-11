@@ -1,26 +1,31 @@
 from flask import Flask, jsonify, request
-from api.preprocessing import preprocess_data
+from api.preprocessing_service import preprocess_data
 from api.predictive_service import make_prediction
 from api.explanation_service import generate_shap_explanations
-from feature_engineering.real_time_features import real_time_features
+from api.feature_engineering_service import perform_feature_engineering
 import pickle
 
-# Load the trained model once at startup
-MODEL_PATH = "models/ml_model.pkl"
-try:
-    with open(MODEL_PATH, "rb") as f:
-        ml_model = pickle.load(f)  # Load the model into memory
-except FileNotFoundError:
-    raise FileNotFoundError(f"Default model not found at {MODEL_PATH}")
+# Load model once to improve performance
+def load_model(model_path="models/ml_model.pkl"):
+    with open(model_path, "rb") as model_file:
+        return pickle.load(model_file)
+
+ml_model = load_model()
 
 app = Flask(__name__)
 
 @app.route('/health', methods=['GET'])
 def health_check():
+    """
+    Health check endpoint.
+    """
     return jsonify({"status": "healthy"}), 200
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    """
+    Predict fraud and provide SHAP explanations.
+    """
     try:
         input_data = request.json
         if not input_data:
@@ -30,8 +35,7 @@ def predict():
         preprocessed_data = preprocess_data(input_data)
 
         # Step 2: Perform real-time feature engineering
-        # TODO: recheck if we will have feature engineering
-        features = real_time_features(preprocessed_data)
+        features = perform_feature_engineering(preprocessed_data)
 
         # Step 3: Make prediction using the pre-loaded model
         prediction = make_prediction(ml_model, features)
@@ -43,8 +47,8 @@ def predict():
         return jsonify({
             "prediction": prediction,
             "explanation": shap_values.tolist(),
-            "bar_plot_path": plot_paths.get("bar_plot"),
-            "summary_plot_path": plot_paths.get("summary_plot"),
+            "bar_plot_path": plot_paths["bar_plot"],
+            "summary_plot_path": plot_paths["summary_plot"],
         }), 200
     
     except Exception as e:

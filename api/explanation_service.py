@@ -5,15 +5,9 @@ import pandas as pd
 import boto3
 import shap
 import matplotlib.pyplot as plt
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
 
 # Access the environment variables
 bucket_name = os.getenv("S3_BUCKET_NAME")
-
-# Initialize the S3 client using the loaded environment variables
 s3 = boto3.client(
     "s3",
     aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),

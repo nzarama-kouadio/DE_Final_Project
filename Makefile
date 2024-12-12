@@ -48,7 +48,7 @@ test_local_predict_api:
 	}'
 
 test_local_predict_api_multiples:
-	curl -X POST http://127.0.0.1:8000/predict \
+	curl -X POST http://$(LOCAL_DOMAIN):$(PORT)/predict \
 	-H "Content-Type: application/json" \
 	-d '[ \
 	{ \
@@ -119,10 +119,10 @@ test_aws_all:
 	make test_aws_predict_api
 
 test_aws_health_check:
-	curl https://$(AWS_DOMAIN):$(PORT)/health
+	curl $(AWS_DOMAIN):$(PORT)/health
 
 test_aws_predict_api:
-	curl -X POST https://$(AWS_DOMAIN):$(PORT)/predict \
+	curl -X POST $(AWS_DOMAIN):$(PORT)/predict \
 	-H "Content-Type: application/json" \
 	-d '[ \
 	{ \

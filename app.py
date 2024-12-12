@@ -1,7 +1,7 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request
 from api.preprocessing_service import preprocess_data
 from api.predictive_service import make_prediction
-from api.explanation_service import generate_cache_shap_explanations, generate_shap_explanations
+from api.explanation_service import generate_cache_shap_explanations
 from api.feature_engineering_service import perform_feature_engineering
 import pickle
 

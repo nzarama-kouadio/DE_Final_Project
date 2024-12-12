@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 from api.preprocessing_service import preprocess_data
 from api.predictive_service import make_prediction
-from api.explanation_service import generate_cache_shap_explanations
+from api.explanation_service import generate_cache_shap_explanations, generate_shap_explanations
 from api.feature_engineering_service import perform_feature_engineering
 import pickle
 
@@ -41,7 +41,8 @@ def predict():
         prediction = make_prediction(ml_model, features)
 
         # Step 4: Generate SHAP explanations
-        shap_values, plot_paths = generate_cache_shap_explanations(ml_model, features)
+        features_tuple = tuple(map(tuple, features.values))
+        shap_values, plot_paths = generate_cache_shap_explanations(ml_model, features_tuple)
 
         # # Step 5: Render the HTML page with plots
         # rendered_html = render_template(

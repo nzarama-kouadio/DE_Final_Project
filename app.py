@@ -1,7 +1,7 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from api.preprocessing_service import preprocess_data
 from api.predictive_service import make_prediction
-from api.explanation_service import generate_shap_explanations
+from api.explanation_service import generate_cache_shap_explanations
 from api.feature_engineering_service import perform_feature_engineering
 import pickle
 
@@ -41,7 +41,20 @@ def predict():
         prediction = make_prediction(ml_model, features)
 
         # Step 4: Generate SHAP explanations
-        shap_values, plot_paths = generate_shap_explanations(ml_model, features)
+        shap_values, plot_paths = generate_cache_shap_explanations(ml_model, features)
+
+        # # Step 5: Render the HTML page with plots
+        # rendered_html = render_template(
+        #     "plots.html",
+        #     bar_plot_path=plot_paths["bar_plot"],
+        #     summary_plot_path=plot_paths["summary_plot"],
+        # )
+
+        # # Return the prediction in JSON and display the HTML
+        # return jsonify({
+        #     "prediction": prediction,
+        #     "html_page": rendered_html
+        # }), 200
 
         # Return prediction and explanation
         return jsonify({

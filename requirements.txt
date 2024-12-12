@@ -20,6 +20,7 @@ imbalanced-learn==0.12.4
 # web frameworks and APIs
 flask
 uvicorn==0.18.3
+gunicorn
 
 # distributed systems and performance testing
 locust

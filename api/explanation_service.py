@@ -1,9 +1,9 @@
+import os
 import uuid
 from functools import lru_cache
 import pandas as pd
 import boto3
 import shap
-import os
 import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 
@@ -14,7 +14,6 @@ load_dotenv()
 bucket_name = os.getenv("S3_BUCKET_NAME")
 
 # Initialize the S3 client using the loaded environment variables
-import boto3
 s3 = boto3.client(
     "s3",
     aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),

@@ -91,7 +91,7 @@ docker_build:
 	docker build -t $(IMAGE_NAME) .
 
 docker_run:
-	docker run --env-file .env -p $(PORT):$(PORT) $(IMAGE_NAME)
+	docker run -p $(PORT):$(PORT) $(IMAGE_NAME)
 
 docker_down:
 	docker image prune -a

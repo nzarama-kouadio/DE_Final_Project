@@ -47,8 +47,7 @@ def predict():
         # Return the prediction in JSON and display the HTML
         return jsonify({
             "prediction": prediction,
-            "bar_plot_url": plot_urls["bar_plot"],
-            "summary_plot_url": plot_urls["summary_plot"]
+            "plot_urls": plot_urls
         }), 200
     
     except Exception as e:

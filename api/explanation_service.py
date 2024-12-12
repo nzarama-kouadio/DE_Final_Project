@@ -5,13 +5,22 @@ import boto3
 import shap
 import os
 import matplotlib.pyplot as plt
-import matplotlib
+from dotenv import load_dotenv
 
-# Set non-interactive matplotlib backend
-matplotlib.use("Agg")
+# Load environment variables from .env file
+load_dotenv()
 
-s3 = boto3.client('s3')
-bucket_name = "fraud-detection-de"
+# Access the environment variables
+bucket_name = os.getenv("S3_BUCKET_NAME")
+
+# Initialize the S3 client using the loaded environment variables
+import boto3
+s3 = boto3.client(
+    "s3",
+    aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+    region_name=os.getenv("AWS_DEFAULT_REGION"),
+)
 
 @lru_cache(maxsize=100)
 def generate_cache_shap_explanations(model, features_tuple):
@@ -53,6 +62,9 @@ def generate_shap_explanations(model, features, save_plots=True):
         explainer = shap.TreeExplainer(model)
 
         # Compute SHAP values
+        features.columns = ['Amount', 'TransactionAmount', 'AnomalyScore', 'Category',
+                            'CustomerAge', 'AccountBalance', 'SuspiciousFlag', 'gap', 
+                            'Hour', 'Day', 'Month', 'Weekday', 'Year']
         shap_values = explainer.shap_values(features)
 
         # Extract SHAP values

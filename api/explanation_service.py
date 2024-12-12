@@ -1,15 +1,41 @@
-import shap
-import matplotlib.pyplot as plt
 import os
 import uuid
 from functools import lru_cache
 import pandas as pd
+import boto3
+import shap
+import matplotlib.pyplot as plt
+from dotenv import load_dotenv
 
+load_dotenv()
+# Access the environment variables
+bucket_name = "fraud-detection-de"
+region = "us-east-2"
+s3 = boto3.client(
+    "s3",
+    aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+    region_name=region,
+)
 
 @lru_cache(maxsize=100)
 def generate_cache_shap_explanations(model, features_tuple):
     features = pd.DataFrame(features_tuple)
     return generate_shap_explanations(model, features)
+
+def upload_to_s3(file_path, s3_key):
+    try:
+        # Upload file to S3
+        s3.upload_file(file_path, bucket_name, s3_key)
+        # Generate a pre-signed URL
+        url = s3.generate_presigned_url(
+            ClientMethod="get_object",
+            Params={"Bucket": bucket_name, "Key": s3_key},
+            ExpiresIn=600,  # Time in seconds
+        )
+        return url
+    except boto3.exceptions.S3UploadFailedError as e:
+        raise ValueError(f"S3 upload failed: {e}")
 
 def generate_shap_explanations(model, features, save_plots=True):
     """
@@ -32,6 +58,9 @@ def generate_shap_explanations(model, features, save_plots=True):
         explainer = shap.TreeExplainer(model)
 
         # Compute SHAP values
+        features.columns = ['Amount', 'TransactionAmount', 'AnomalyScore', 'Category',
+                            'CustomerAge', 'AccountBalance', 'SuspiciousFlag', 'gap',
+                            'Hour', 'Day', 'Month', 'Weekday', 'Year']
         shap_values = explainer.shap_values(features)
 
         # Extract SHAP values
@@ -55,7 +84,17 @@ def generate_shap_explanations(model, features, save_plots=True):
             plt.savefig(plot_paths["summary_plot"])
             plt.close()
 
-        return shap_values_class1, plot_paths
+        # Upload plots to S3 with unique keys
+        plot_urls = {
+            "bar_plot": upload_to_s3(plot_paths["bar_plot"], f"shap_summary_bar_{unique_id}.png"),
+            "summary_plot": upload_to_s3(plot_paths["summary_plot"], f"shap_summary_{unique_id}.png")
+        }
+
+        # Clean up local plot files
+        os.remove(plot_paths["bar_plot"])
+        os.remove(plot_paths["summary_plot"])
+
+        return plot_urls
 
     except Exception as e:
         raise ValueError(f"Error generating SHAP explanations: {e}")

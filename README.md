@@ -16,7 +16,7 @@ Source: https://www.kaggle.com/datasets/goyaladi/fraud-detection-dataset/data
 
 This Financial Fraud Detection Dataset represents transactional data that includes information about transactions made by customers with merchants. Each row corresponds to a unique transaction, and the data includes details about the transaction, the customer, and the merchant as well as other elements such as fraud indicators. This dataset is only reelvant during the training phase of the machine learning model. The dataset is based on real-world data.
 
-## Arhitectural Diagram
+## Architectural Diagram
 
 TO ADD
 
@@ -45,7 +45,7 @@ This document provides a detailed quantitative assessment of the system's perfor
 ## Development Process with AI: Chat Gpt
 
 - **Best Practices and Debugging**: ChatGPT assisted in creating boilerplate code for the microservice, data preprocessing pipelines, and feature engineering scripts, while providing guidance to resolve bugs efficiently.
-- 
+  
 - **Documentation and Clarity**: ChatGPT provided clear explanations and examples for writing comprehensive documentation, including the README file and architectural diagrams, ensuring a well-documented project structure.
 
 

@@ -1,7 +1,7 @@
 name: CICD
 on:
   push:
-    branches: [ "main", "infra", "develop", "hotfix"]
+    branches: [ "main", "infra", "develop", "hotfix", "s3_new"]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:

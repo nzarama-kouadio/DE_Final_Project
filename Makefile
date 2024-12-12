@@ -119,10 +119,10 @@ test_aws_all:
 	make test_aws_predict_api
 
 test_aws_health_check:
-	curl $(AWS_DOMAIN):$(PORT)/health
+	curl $(AWS_DOMAIN)/health
 
 test_aws_predict_api:
-	curl -X POST $(AWS_DOMAIN):$(PORT)/predict \
+	curl -X POST $(AWS_DOMAIN)/predict \
 	-H "Content-Type: application/json" \
 	-d '[ \
 	{ \

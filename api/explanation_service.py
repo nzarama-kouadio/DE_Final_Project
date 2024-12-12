@@ -2,7 +2,12 @@ import shap
 import matplotlib.pyplot as plt
 import os
 import uuid
+from functools import lru_cache
 
+
+@lru_cache(maxsize=100)
+def generate_cache_shap_explanations(model, features):
+    return generate_shap_explanations(model, features)
 
 def generate_shap_explanations(model, features, save_plots=True):
     """

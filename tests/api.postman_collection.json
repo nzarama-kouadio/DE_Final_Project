@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "a4c40d70-96b7-4c19-884c-352ae8614729",
+		"name": "api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14560913"
+	},
+	"item": [
+		{
+			"name": "predict",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"TransactionID\": \"1\",\r\n    \"Timestamp\": \"2024-12-10T12:00:00\",\r\n    \"MerchantID\": \"101\",\r\n    \"Amount\": 100.5,\r\n    \"CustomerID\": \"202\",\r\n    \"TransactionAmount\": 150.75,\r\n    \"AnomalyScore\": 0.5,\r\n    \"Category\": \"Online\",\r\n    \"CustomerAge\": 35,\r\n    \"AccountBalance\": 5000.25,\r\n    \"SuspiciousFlag\": 0,\r\n    \"LastLogin\": \"2024-12-09T15:00:00\"\r\n  },\r\n  {\r\n    \"TransactionID\": \"2\",\r\n    \"Timestamp\": \"2024-12-10T13:00:00\",\r\n    \"MerchantID\": \"102\",\r\n    \"Amount\": 200.75,\r\n    \"CustomerID\": \"203\",\r\n    \"TransactionAmount\": 250.50,\r\n    \"AnomalyScore\": 0.7,\r\n    \"Category\": \"Travel\",\r\n    \"CustomerAge\": 40,\r\n    \"AccountBalance\": 7000.00,\r\n    \"SuspiciousFlag\": 1,\r\n    \"LastLogin\": \"2024-12-09T16:00:00\"\r\n  }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4fupzbqtbq.us-east-2.awsapprunner.com/predict",
+					"protocol": "https",
+					"host": [
+						"4fupzbqtbq",
+						"us-east-2",
+						"awsapprunner",
+						"com"
+					],
+					"path": [
+						"predict"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

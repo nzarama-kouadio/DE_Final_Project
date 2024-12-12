@@ -38,7 +38,7 @@ class UserBehavior(TaskSet):
                 "LastLogin": "2024-12-09T16:00:00"
             }
             ]
-        self.client.post("/predict",payload)
+        self.client.post("/predict",json=payload)
 
 
 class LoadTest(HttpUser):

@@ -42,27 +42,13 @@ def predict():
 
         # Step 4: Generate SHAP explanations
         features_tuple = tuple(map(tuple, features.values))
-        shap_values, plot_paths = generate_cache_shap_explanations(ml_model, features_tuple)
+        plot_urls = generate_cache_shap_explanations(ml_model, features_tuple)
 
-        # # Step 5: Render the HTML page with plots
-        # rendered_html = render_template(
-        #     "plots.html",
-        #     bar_plot_path=plot_paths["bar_plot"],
-        #     summary_plot_path=plot_paths["summary_plot"],
-        # )
-
-        # # Return the prediction in JSON and display the HTML
-        # return jsonify({
-        #     "prediction": prediction,
-        #     "html_page": rendered_html
-        # }), 200
-
-        # Return prediction and explanation
+        # Return the prediction in JSON and display the HTML
         return jsonify({
             "prediction": prediction,
-            "explanation": shap_values.tolist(),
-            "bar_plot_path": plot_paths["bar_plot"],
-            "summary_plot_path": plot_paths["summary_plot"],
+            "bar_plot_url": plot_urls["bar_plot"],
+            "summary_plot_url": plot_urls["summary_plot"]
         }), 200
     
     except Exception as e:

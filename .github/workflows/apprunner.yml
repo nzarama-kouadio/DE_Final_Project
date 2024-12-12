@@ -1,7 +1,7 @@
 name: Deploy App to AWS AppRunner
 on:
   push:
-    branches: [ "main", "infra", "develop", "hotfix" ]
+    branches: [ "main", "infra", "develop", "hotfix", "s3_new" ]
   pull_request:
     branches: [ "main", "develop" ]
   workflow_dispatch:

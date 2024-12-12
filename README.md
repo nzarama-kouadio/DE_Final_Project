@@ -21,14 +21,14 @@ The raw data was consolidated from multiple .csv files into a single dataset pre
 - Split the dataset into training and testing sets (e.g., 80-20 split) to ensure robust evaluation.
 
 #### Model Selection
-- Addressed class imbalance using SMOTE (Synthetic Minority Oversampling Technique) and FROST (Feature space RObust - Synthetic saTuration).
-	•	Trained and compared multiple machine learning algorithms, including:
-	•	Random Forest Classifier
-	•	Logistic Regression
-	•	Support Vector Machine
-	•	K-Nearest Neighbors
-	•	Gradient Boosting Classifier
-	•	Decision Tree Classifier
+- Addressed class imbalance using SMOTE (Synthetic Minority Oversampling Technique) and FROST (Feature space RObust Synthetic saTuration).
+- Trained and compared multiple machine learning algorithms, including:
+	- Random Forest Classifier
+	- Logistic Regression
+	- Support Vector Machine
+	- K-Nearest Neighbors
+	- Gradient Boosting Classifier
+	- Decision Tree Classifier
 - Random Forest Classifier emerged as the best-performing model, with hyperparameters optimized using GridSearchCV.
 
 #### Cross Validation

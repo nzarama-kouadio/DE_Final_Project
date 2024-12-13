@@ -2,6 +2,10 @@
 
 [![apprunner](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/apprunner.yml/badge.svg)](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/apprunner.yml) [![CICD](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/CICD.yml/badge.svg)](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/CICD.yml)
 
+## DEMO Video
+
+[YouTube Link](https://youtu.be/XqJ-fp5PjgQ)
+
 ## Project Goal
 
 The goal of this project is to design and deploy a scalable microservice for real-time transaction fraud detection. The microservice integrates a machine learning model trained to identify fraudulent transactions and utilizes modern best practices, including containerization with a Distroless Docker image, feature engineering for real-time data processing, and robust Infrastructure as Code (IaC) tools for deployment. It is optimized to handle high-performance workloads, processing up to 10,000 requests per second, with reliability validated through extensive load testing and performance metrics. By combining data engineering techniques, explainability tools (e.g., SHAP), and CI/CD pipelines, this project aims to deliver a reliable and interpretable fraud detection solution while fostering collaboration and leveraging AI Pair Programming tools to enhance development efficiency.
@@ -70,8 +74,3 @@ This document provides a detailed quantitative assessment of the system's perfor
 - **Best Practices and Debugging**: ChatGPT assisted in creating boilerplate code for the microservice, data preprocessing pipelines, and feature engineering scripts, while providing guidance to resolve bugs efficiently.
   
 - **Documentation and Clarity**: ChatGPT provided clear explanations and examples for writing comprehensive documentation, including the README file and architectural diagrams, ensuring a well-documented project structure.
-
-
-## DEMO Video
-
-Here is the link to our demo video: TO ADD

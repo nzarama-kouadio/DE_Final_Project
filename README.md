@@ -1,6 +1,8 @@
-# DE_Final_Project
+# IDS 706 Data Engineering Systems Final Project
 
 [![apprunner](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/apprunner.yml/badge.svg)](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/apprunner.yml) [![CICD](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/CICD.yml/badge.svg)](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/CICD.yml)
+
+### Team Members: Mona Saeed, Nruta Choudhari, Nzarama Kouadio, Skye Augsorn
 
 ## DEMO Video
 

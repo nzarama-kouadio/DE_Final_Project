@@ -8,7 +8,28 @@ The goal of this project is to design and deploy a scalable microservice for rea
 
 ## Project Structure
 
-TO ADD
+├── .devcontainer/          # Configuration for development environment
+├── .github/workflows/      # GitHub Actions workflows for CI/CD
+├── api/                    # API implementation (e.g., Flask-based services)
+├── build/                  # Infrastructure setup files
+├── catboost_info/          # Additional models and logs for CatBoost
+├── feature_engineering/    # Feature engineering scripts and utilities
+├── models/                 # Machine learning models and explainability tools
+├── templates/              # Templates for workflows and visualizations
+├── tests/                  # Unit and integration tests
+├── Dockerfile              # Docker configuration for containerizing the app
+├── Makefile                # Commands for setup, testing, and deployment
+├── README.md               # Project overview and instructions
+├── Team_Reflection.pdf     # Team reflection and peer evaluations
+├── app.py                  # Main application file
+├── assessment.py           # Quantitative assessment script
+├── complete_dataset.csv    # Processed dataset
+├── locust_results_stats.csv# Results from load testing
+├── locustfile.py           # Load testing configuration
+├── requirements.txt        # Python dependencies
+├── shap_summary.png        # Visualization of SHAP summary
+├── shap_summary_bar.png    # Bar chart of SHAP importance
+
 
 ## Dataset Overview
 

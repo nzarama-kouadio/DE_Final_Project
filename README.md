@@ -8,6 +8,8 @@ The goal of this project is to design and deploy a scalable microservice for rea
 
 ## Project Structure
 
+```
+
 ├── .devcontainer/          # Configuration for development environment
 ├── .github/workflows/      # GitHub Actions workflows for CI/CD
 ├── api/                    # API implementation (e.g., Flask-based services)
@@ -30,6 +32,7 @@ The goal of this project is to design and deploy a scalable microservice for rea
 ├── shap_summary.png        # Visualization of SHAP summary
 ├── shap_summary_bar.png    # Bar chart of SHAP importance
 
+```
 
 ## Dataset Overview
 

@@ -17,8 +17,7 @@ Source: https://www.kaggle.com/datasets/goyaladi/fraud-detection-dataset/data
 This Financial Fraud Detection Dataset represents transactional data that includes information about transactions made by customers with merchants. Each row corresponds to a unique transaction, and the data includes details about the transaction, the customer, and the merchant as well as other elements such as fraud indicators. This dataset is only reelvant during the training phase of the machine learning model. The dataset is based on real-world data.
 
 ## Architectural Diagram
-
-TO ADD
+![Architectural diagram](https://github.com/user-attachments/assets/fe487cce-7782-4363-9b23-d67be194e7ee)
 
 ## Quantitative Assessment: System Performance Assessment
 

@@ -1,6 +1,7 @@
 # IDS 706 Data Engineering Systems Final Project
-
 [![apprunner](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/apprunner.yml/badge.svg)](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/apprunner.yml) [![CICD](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/CICD.yml/badge.svg)](https://github.com/nzarama-kouadio/DE_Final_Project/actions/workflows/CICD.yml)
+
+[link to our application](https://4fupzbqtbq.us-east-2.awsapprunner.com/health)
 
 ### Team Members: Mona Saeed, Nruta Choudhari, Nzarama Kouadio, Skye Augsorn
 
@@ -64,7 +65,7 @@ This document provides a detailed quantitative assessment of the system's perfor
 -   **Failure Rate**: 5.67% This is the percentage of requests that failed during the test. A failure rate below 10% indicates the system can manage a majority of requests successfully, even under a high load of 10,000 users.
 
 ### Endpoint-Level Results
-
+![Locust Performance Test](locust_screenshot.jpg)
 | Endpoint | Total Requests | Median Response Time | Average Response Time | Failures |
 |---------------|---------------|---------------|---------------|---------------|
 | **GET `/health`** | 115,383 | 790 ms | 7,046 ms | 5,781 (\~5%) |
